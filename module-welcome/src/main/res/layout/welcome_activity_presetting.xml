@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clipChildren="false"
+        android:clipToPadding="false"
+        android:orientation="vertical"
+        android:paddingLeft="@dimen/moment_activity_horizontal_margin"
+        android:paddingTop="@dimen/moment_activity_vertical_margin"
+        android:paddingRight="@dimen/moment_activity_horizontal_margin"
+        android:paddingBottom="@dimen/moment_activity_vertical_margin">
+
+        <com.timecat.layout.ui.standard.ColorTextView
+            android:id="@+id/_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:gravity="center"
+            android:padding="10dp"
+            android:textColor="@color/primary_text"
+            android:textSize="@dimen/text_size_huge" />
+
+        <com.timecat.layout.ui.standard.ColorTextView
+            android:id="@+id/control_setting_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_normal"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/btn_white_stroke_green_p"
+            android:gravity="center"
+            android:lineSpacingExtra="@dimen/margin_normal"
+            android:padding="10dp"
+            android:textColor="@color/primary_text"
+            android:textSize="@dimen/text_size_normal" />
+
+        <com.timecat.layout.ui.standard.ColorTextView
+            android:id="@+id/introduction"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_normal"
+            android:gravity="center"
+            android:padding="10dp"
+            android:textColor="@color/secondary_text"
+            android:textSize="@dimen/text_size_small" />
+
+        <androidx.appcompat.widget.AppCompatCheckBox
+            android:id="@+id/contron_by_float"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp"
+            android:text="@string/control_by_float"
+            android:theme="@style/CheckBoxTheme" />
+
+        <androidx.appcompat.widget.AppCompatCheckBox
+            android:id="@+id/contron_by_notify"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp"
+            android:text="@string/control_by_notify"
+            android:theme="@style/CheckBoxTheme" />
+
+        <androidx.appcompat.widget.AppCompatCheckBox
+            android:id="@+id/trigger_by_float"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp"
+            android:text="@string/trigger_by_float"
+            android:theme="@style/CheckBoxTheme" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/confirm"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:text="@string/confirm_setting" />
+
+    </LinearLayout>
+</ScrollView>

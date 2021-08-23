@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="welcome_entry">立即进入</string>
+
+    <string name="welcome_hello">送你最高效的时光喵~</string>
+    <string name="welcome_timecat_copyright">Copyright ©2018 Time Cat. All Rights Reserved</string>
+</resources>

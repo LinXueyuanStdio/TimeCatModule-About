@@ -1,0 +1,27 @@
+apply from: "${project.rootDir}/gradle/library_header.gradle"
+
+android {
+    resourcePrefix "about_" //给 Module 内的资源名增加前缀, 避免资源名冲突
+    buildFeatures{
+        dataBinding = true
+        // viewBinding = true
+    }
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    api rootProject.ext.timecat["component-CommonBase"]
+    api rootProject.ext.timecat["component-CommonUI"]
+    api rootProject.ext.timecat["component-SelfRouter"]
+
+    implementation 'com.drakeet.about:about:2.4.1'
+    implementation 'com.drakeet.multitype:multitype:4.0.0'
+    implementation 'com.heinrichreimersoftware:material-intro:1.6'
+    implementation ('com.mikepenz:aboutlibraries:5.2.5@aar') { transitive = true }
+
+    api 'com.github.daniel-stoneuk:material-about-library:2.1.0'
+
+    implementation rootProject.ext.dependencies["roundedimageview"]
+}
+
+apply from: "${project.rootDir}/gradle/library_tail.gradle"

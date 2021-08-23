@@ -1,6 +1,7 @@
-rootProject.name = "TimeCatModuleTemplate"
+rootProject.name = "TimeCatModule-About"
 
 apply from: "context.gradle"
 
 include ':app'
-include ':module-git'
+include ':module-about'
+include ':module-welcome'

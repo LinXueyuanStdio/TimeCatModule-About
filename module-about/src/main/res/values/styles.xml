@@ -1,0 +1,27 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <style name="about_AboutActivity" parent="Theme.AppCompat.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@android:color/black</item>
+
+        <!--optional-->
+        <!--        <item name="aboutPageHeaderBackground">reference|color</item>-->
+        <!--        <item name="aboutPageHeaderContentScrim">reference|color</item>-->
+        <!--        <item name="aboutPageHeaderTextColor">color</item>-->
+        <item name="aboutPageNavigationIcon">@drawable/ic_arrow_back_white_24dp</item>
+    </style>
+
+    <style name="about_LicenseActivity" parent="ThemeLight">
+        <item name="colorPrimary">@color/light_primary</item>
+        <item name="colorPrimaryDark">@color/light_primary_dark</item>
+        <item name="colorAccent">@color/light_accent</item>
+        <item name="mal_lightActionBar">true</item>
+        <item name="mal_popupOverlay">@style/Theme.Mal.Light.PopupOverlay</item>
+        <item name="mal_color_primary">#212121</item>
+        <item name="mal_color_secondary">#727272</item>
+        <item name="android:windowLightStatusBar" tools:targetApi="m">true</item>
+        <item name="mal_card_background">@color/cardview_light_background</item>
+    </style>
+
+</resources>
