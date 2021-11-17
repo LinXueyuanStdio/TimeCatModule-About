@@ -19,8 +19,5 @@
             android:name="com.timecat.module.guide.PreSettingActivity"
             android:launchMode="singleTask"
             android:windowSoftInputMode="adjustPan" />
-        <activity
-            android:name=".onboarding.OnBoardingActivity"
-            android:theme="@style/ThemeLight.OnBoarding" />
     </application>
 </manifest>

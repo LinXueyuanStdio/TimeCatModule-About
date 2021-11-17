@@ -1,4 +1,4 @@
-package com.timecat.module.guide.onboarding.entity
+package com.timecat.module.guide.core
 
 data class OnBoardingPage(
     val titleResource: String,

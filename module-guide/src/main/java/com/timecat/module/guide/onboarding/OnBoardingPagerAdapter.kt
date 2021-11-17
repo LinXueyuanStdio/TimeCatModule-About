@@ -2,8 +2,7 @@ package com.timecat.module.guide.onboarding
 
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.timecat.module.guide.cover.OnBoardingPageView
-import com.timecat.module.guide.onboarding.entity.OnBoardingPage
+import com.timecat.module.guide.core.OnBoardingPage
 
 class OnBoardingPagerAdapter(private val onBoardingPageList: List<OnBoardingPage>) : RecyclerView.Adapter<PagerViewHolder>() {
 

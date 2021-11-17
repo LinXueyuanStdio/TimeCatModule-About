@@ -4,6 +4,7 @@ apply from: "context.gradle"
 
 include ':app'
 include ':guide'
+include ':guide-api'
 include ':module-about'
 include ':module-guide'
 include ':module-welcome'

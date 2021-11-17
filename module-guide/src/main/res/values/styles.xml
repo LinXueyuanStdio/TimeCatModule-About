@@ -1,12 +1,5 @@
 <resources>
-    <!-- Theme for OnBoardingActivity (applying some transition) -->
-    <style name="ThemeLight.OnBoarding" parent="ThemeLight">
-        <item name="android:windowSharedElementsUseOverlay">false</item>
-        <item name="android:windowContentTransitions">true</item>
 
-        <item name="android:windowExitTransition">@transition/activity_main_exit</item>
-        <item name="android:windowReenterTransition">@transition/activity_main_reenter</item>
-    </style>
     <!--Styling TextInputLayout colors-->
     <style name="Widget.MaterialComponents.Button.TextButton.OnBoardTextButton" parent="Widget.MaterialComponents.Button.TextButton">
         <item name="android:layout_width">wrap_content</item>

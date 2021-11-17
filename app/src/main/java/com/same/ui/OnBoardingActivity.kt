@@ -1,9 +1,11 @@
-package com.timecat.module.guide.onboarding
+package com.same.ui
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.timecat.module.guide.R
-import com.timecat.module.guide.onboarding.entity.OnBoardingPage
+import com.timecat.module.guide.core.OnBoardingCallback
+import com.timecat.module.guide.onboarding.OnBoardingView
+import com.timecat.module.guide.core.OnBoardingPage
 
 class OnBoardingActivity : AppCompatActivity() {
 
@@ -33,5 +35,14 @@ class OnBoardingActivity : AppCompatActivity() {
             )
         )
         view.onBoardingPageList = pages
+        view.callback = object : OnBoardingCallback {
+            override fun onSkip() {
+                finish()
+            }
+
+            override fun onFinish() {
+                finish()
+            }
+        }
     }
 }

@@ -1,8 +1,7 @@
-package com.timecat.module.guide.onboarding
+package com.timecat.module.guide.core
 
 import android.content.Context
 import android.view.View
-import com.timecat.module.guide.onboarding.entity.OnBoardingPage
 
 /**
  * @author 林学渊

@@ -10,7 +10,6 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.LinearLayout
 import com.timecat.identity.readonly.RouterHub
-import com.timecat.module.guide.onboarding.OnBoardingActivity
 import com.xiaojinzi.component.impl.*
 
 class MainActivity : Activity() {

@@ -3,7 +3,6 @@ package com.timecat.module.guide.onboarding
 import android.content.Context
 import android.util.AttributeSet
 import android.view.LayoutInflater
-import android.view.View
 import android.widget.FrameLayout
 import androidx.constraintlayout.motion.widget.MotionLayout
 import androidx.constraintlayout.widget.Guideline
@@ -13,7 +12,8 @@ import com.google.android.material.button.MaterialButton
 import com.tbuonomo.viewpagerdotsindicator.WormDotsIndicator
 import com.timecat.module.guide.R
 import com.timecat.module.guide.anim.setParallaxTransformation
-import com.timecat.module.guide.onboarding.entity.OnBoardingPage
+import com.timecat.module.guide.core.OnBoardingCallback
+import com.timecat.module.guide.core.OnBoardingPage
 
 class OnBoardingView @JvmOverloads constructor(
     context: Context,

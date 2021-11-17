@@ -41,7 +41,9 @@
                 <category android:name="android.intent.category.MULTIWINDOW_LAUNCHER" />
             </intent-filter>
         </activity>
-
+        <activity
+            android:name="com.same.ui.OnBoardingActivity"
+            android:theme="@style/ThemeLight.OnBoarding" />
         <meta-data
             android:name="android.max_aspect"
             android:value="2.5" />

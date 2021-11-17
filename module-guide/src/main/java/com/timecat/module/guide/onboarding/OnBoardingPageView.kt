@@ -1,4 +1,4 @@
-package com.timecat.module.guide.cover
+package com.timecat.module.guide.onboarding
 
 import android.content.Context
 import android.util.AttributeSet
@@ -10,7 +10,7 @@ import com.timecat.layout.ui.layout.layout_width
 import com.timecat.layout.ui.layout.match_parent
 import com.timecat.layout.ui.utils.IconLoader
 import com.timecat.module.guide.R
-import com.timecat.module.guide.onboarding.entity.OnBoardingPage
+import com.timecat.module.guide.core.OnBoardingPage
 
 /**
  * @author 林学渊
@@ -31,7 +31,7 @@ class OnBoardingPageView @JvmOverloads constructor(
     private val descTV: TextView by lazy { findViewById(R.id.descTV) }
 
     init {
-        inflate(context, R.layout.guide_onboarding_page_item, this)
+        inflate(context, R.layout.guide_view_onboarding_page, this)
         layout_width = match_parent
         layout_height = match_parent
     }
