@@ -30,7 +30,6 @@
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/margin_normal"
             android:layout_marginTop="20dp"
-            android:background="@drawable/btn_white_stroke_green_p"
             android:gravity="center"
             android:lineSpacingExtra="@dimen/margin_normal"
             android:padding="10dp"

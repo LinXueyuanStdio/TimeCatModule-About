@@ -46,22 +46,11 @@ class PreSettingActivity : BaseSimpleRxActivity() {
     private var isClickFloat = false
     private var isClickNotify = false
 
-    override fun layout(): Int {
-        return R.layout.welcome_activity_presetting
-    }
+    override fun layout(): Int = R.layout.welcome_activity_presetting
 
     override fun bindView() {
         initView()
         refresh()
-    }
-
-    /**
-     * 屏蔽物理返回按钮
-     */
-    override fun onKeyDown(keyCode: Int, event: KeyEvent): Boolean {
-        return if (keyCode == KeyEvent.KEYCODE_BACK) {
-            true
-        } else super.onKeyDown(keyCode, event)
     }
 
     private fun refresh() {
