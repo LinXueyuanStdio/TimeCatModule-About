@@ -5,7 +5,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.annotation.LayoutRes
 import androidx.recyclerview.widget.RecyclerView
 import com.timecat.module.guide.R
 import com.timecat.module.guide.onboarding.entity.OnBoardingPage
@@ -13,9 +12,7 @@ import com.timecat.module.guide.onboarding.entity.OnBoardingPage
 class OnBoardingPagerAdapter(private val onBoardingPageList: Array<OnBoardingPage> = OnBoardingPage.values()) : RecyclerView.Adapter<PagerViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, p1: Int): PagerViewHolder {
-        return LayoutInflater.from(parent.context).inflate(
-            PagerViewHolder.LAYOUT, parent, false
-        ).let { PagerViewHolder(it) }
+        return PagerViewHolder.create(parent)
     }
 
     override fun getItemCount() = onBoardingPageList.size
@@ -40,7 +37,10 @@ class PagerViewHolder(private val root: View) : RecyclerView.ViewHolder(root) {
     }
 
     companion object {
-        @LayoutRes
-        val LAYOUT = R.layout.guide_onboarding_page_item
+        fun create(parent: ViewGroup): PagerViewHolder {
+            return LayoutInflater.from(parent.context).inflate(
+                R.layout.guide_onboarding_page_item, parent, false
+            ).let { PagerViewHolder(it) }
+        }
     }
 }

@@ -67,7 +67,9 @@ class OnBoardingView @JvmOverloads constructor(
     }
 
     private fun addingButtonsClickListeners() {
-        nextBtn.setOnClickListener { navigateToNextSlide() }
+        nextBtn.setOnClickListener {
+            navigateToNextSlide()
+        }
         skipBtn.setOnClickListener {
             setFirstTimeLaunchToFalse()
         }

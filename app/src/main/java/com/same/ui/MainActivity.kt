@@ -1,6 +1,7 @@
 package com.same.ui
 
 import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.Gravity
@@ -9,6 +10,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.LinearLayout
 import com.timecat.identity.readonly.RouterHub
+import com.timecat.module.guide.onboarding.OnBoardingActivity
 import com.xiaojinzi.component.impl.*
 
 class MainActivity : Activity() {
@@ -20,6 +22,9 @@ class MainActivity : Activity() {
         linearLayout.addView(createButton("介绍", RouterHub.WELCOME_IntroActivity))
         linearLayout.addView(createButton("引导", RouterHub.WELCOME_WelcomeGuideActivity))
         linearLayout.addView(createButton("预设", RouterHub.WELCOME_PreSettingActivity))
+        linearLayout.addView(createButton("OnBoardingActivity") {
+            startActivity(Intent(this, OnBoardingActivity::class.java))
+        })
         setContentView(linearLayout)
     }
 

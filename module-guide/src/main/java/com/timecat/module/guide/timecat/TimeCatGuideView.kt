@@ -16,10 +16,10 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.cardview.widget.CardView
+import com.afollestad.vvalidator.util.show
 import com.timecat.component.commonsdk.utils.clipboard.ClipboardUtils
 import com.timecat.element.alert.SnackBarUtil
 import com.timecat.element.alert.ToastUtil
-import com.timecat.layout.ui.business.GuideView
 import com.timecat.layout.ui.business.timecat.TimeCatLayoutWrapper
 import com.timecat.module.guide.R
 import java.io.UnsupportedEncodingException
@@ -43,6 +43,7 @@ class TimeCatGuideView @JvmOverloads constructor(
     private val mTimeCatLayout: TimeCatLayoutWrapper by lazy { findViewById(R.id.timecat_wrap) }
     private val mFunctionIntroTV: AppCompatTextView by lazy { findViewById(R.id.enter_timecat_intro) }
     var guideListener: GuideListener? = null
+    var guideService: GuideService? = null
 
     private lateinit var guideView: GuideView
     var clickTimes = 0
@@ -239,35 +240,45 @@ class TimeCatGuideView @JvmOverloads constructor(
 
             override fun onAnimationRepeat(animation: Animation) {}
         })
-        guideView = GuideView.Builder(this)
+        guideView = GuideView.Builder(context)
             .setTargetView(mIntro) //设置目标
-            .setCustomGuideView(tv).setCenterView(imageView).setDirction(GuideView.Direction.BOTTOM)
+            .setCustomGuideView(tv)
+            .setCenterView(imageView)
+            .setDirction(GuideView.Direction.BOTTOM)
             .setShape(GuideView.MyShape.CIRCULAR) // 设置圆形显示区域，
             .setOffset(0, mIntro.measuredHeight + 100)
             .setBgColor(resources.getColor(R.color.shadow))
-            .setOnclickListener {
-                animation.cancel()
-                guideView.hide()
-                mIntro.visibility = GONE
-                mTimeCatWraper.setVisibility(VISIBLE)
-                mTimeCatWraper.setScaleX(0f)
-                mTimeCatWraper.setScaleY(0f)
-                mTimeCatWraper.animate().scaleY(1f).scaleX(1f)
-                    .setInterpolator(AnticipateOvershootInterpolator()).setDuration(200)
-                    .setListener(object : Animator.AnimatorListener {
-                        override fun onAnimationStart(animation: Animator) {}
-                        override fun onAnimationEnd(animation: Animator) {
-                            handler!!.postDelayed({ showTimeCatIntro() }, 300)
-                        }
+            .setOnclickListener(object : GuideView.OnClickCallback {
+                override fun onClickedGuideView() {
+                    animation.cancel()
+                    guideView.hide {
+                        guideService?.onHide(it)
+                    }
+                    mIntro.visibility = GONE
+                    mTimeCatWraper.setVisibility(VISIBLE)
+                    mTimeCatWraper.setScaleX(0f)
+                    mTimeCatWraper.setScaleY(0f)
+                    mTimeCatWraper.animate().scaleY(1f).scaleX(1f)
+                        .setInterpolator(AnticipateOvershootInterpolator()).setDuration(200)
+                        .setListener(object : Animator.AnimatorListener {
+                            override fun onAnimationStart(animation: Animator) {}
+                            override fun onAnimationEnd(animation: Animator) {
+                                postDelayed({ showTimeCatIntro() }, 300)
+                            }
 
-                        override fun onAnimationCancel(animation: Animator) {}
-                        override fun onAnimationRepeat(animation: Animator) {}
-                    }).start()
+                            override fun onAnimationCancel(animation: Animator) {}
+                            override fun onAnimationRepeat(animation: Animator) {}
+                        }).start()
+                }
+            })
+            .setOnViewAddedListener(object : GuideView.OnViewAddedListener {
+                override fun viewAdded(view: View) {
+                    view.animation = animation
+                    animation.start()
+                }
+            }).build {
+                guideService?.onHide(it)
             }
-            .setOnViewAddedListener { view: View ->
-                view.animation = animation
-                animation.start()
-            }.build()
         guideView.setClickable(false)
         guideView.setLongClickable(false)
         guideView.setFocusable(false)
@@ -296,12 +307,12 @@ class TimeCatGuideView @JvmOverloads constructor(
         animation.setAnimationListener(object : Animation.AnimationListener {
             override fun onAnimationStart(animation: Animation) {}
             override fun onAnimationEnd(animation: Animation) {
-                handler!!.postDelayed({ imageView.startAnimation(animation) }, 500)
+                postDelayed({ imageView.startAnimation(animation) }, 500)
             }
 
             override fun onAnimationRepeat(animation: Animation) {}
         })
-        guideView = GuideView.Builder(this)
+        guideView = GuideView.Builder(context)
             .setTargetView(mTimeCatWraper) //设置目标
             .setCustomGuideView(tv)
             .setCenterView(imageView)
@@ -310,16 +321,24 @@ class TimeCatGuideView @JvmOverloads constructor(
             .setRadius(5)
             .setOffset(0, mTimeCatWraper.getMeasuredHeight() / 2 + 100)
             .setBgColor(resources.getColor(R.color.shadow))
-            .setOnclickListener {
-                animation.cancel()
-                guideView.hide()
-                guideListener?.onNextEnable()
-                mFunctionIntroTV.visibility = VISIBLE
+            .setOnclickListener(object : GuideView.OnClickCallback {
+                override fun onClickedGuideView() {
+                    animation.cancel()
+                    guideView.hide {
+                        guideService?.onHide(it)
+                    }
+                    guideListener?.onNextEnable()
+                    mFunctionIntroTV.visibility = VISIBLE
+                }
+            })
+            .setOnViewAddedListener(object : GuideView.OnViewAddedListener {
+                override fun viewAdded(view: View) {
+                    view.animation = animation
+                    animation.start()
+                }
+            }).build {
+                guideService?.onHide(it)
             }
-            .setOnViewAddedListener { view: View ->
-                view.animation = animation
-                animation.start()
-            }.build()
         guideView.setClickable(false)
         guideView.setLongClickable(false)
         guideView.setFocusable(false)

@@ -8,5 +8,6 @@ package com.timecat.module.guide.timecat
  * @usage null
  */
 interface GuideService {
-
+    fun onHide(view: GuideView)
+    fun onShow(view: GuideView)
 }
