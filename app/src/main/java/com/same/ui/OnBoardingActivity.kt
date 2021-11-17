@@ -2,11 +2,11 @@ package com.same.ui
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.timecat.module.guide.R
 import com.timecat.component.guide.api.OnBoardingCallback
-import com.timecat.module.guide.onboarding.OnBoardingView
 import com.timecat.component.guide.api.OnBoardingPage
+import com.timecat.component.guide.api.OnBoardingService
 import com.timecat.component.router.app.NAV
+import com.timecat.fake.welcome.R
 
 class OnBoardingActivity : AppCompatActivity() {
 
@@ -33,7 +33,7 @@ class OnBoardingActivity : AppCompatActivity() {
                 "R.drawable.ic_a_day_at_the_park"
             )
         )
-        val view = service.buildOnBoardingView(
+        val view = service?.buildOnBoardingView(
             this,
             pages,
             object : OnBoardingCallback {

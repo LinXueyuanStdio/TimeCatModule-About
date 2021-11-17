@@ -2,6 +2,9 @@ package com.timecat.module.guide.core
 
 import android.content.Context
 import android.view.View
+import com.timecat.component.guide.api.OnBoardingCallback
+import com.timecat.component.guide.api.OnBoardingPage
+import com.timecat.component.guide.api.OnBoardingService
 import com.timecat.module.guide.onboarding.OnBoardingView
 import com.xiaojinzi.component.anno.ServiceAnno
 
