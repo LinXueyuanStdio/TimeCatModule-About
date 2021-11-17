@@ -1,17 +1,14 @@
 package com.erkutaras.showcaseview
 
-import android.app.Activity
 import android.content.Context
-import android.content.Intent
 import android.graphics.Rect
 import android.os.Build
 import android.os.Parcelable
-import androidx.appcompat.app.AppCompatActivity
 import android.util.Log
 import android.view.View
 import androidx.annotation.RequiresApi
-
-import java.util.ArrayList
+import androidx.appcompat.app.AppCompatActivity
+import java.util.*
 import kotlin.math.pow
 import kotlin.math.sqrt
 
@@ -24,7 +21,7 @@ class ShowcaseManager private constructor(private val builder: Builder) {
     private val context: Context = builder.context
     private val key: String = builder.key
 
-    fun show() {
+    fun show(triggerShow: (showcaseModelList: ArrayList<out Parcelable>, key: String) -> Unit) {
         if (hasNullParameters(builder)) {
             return
         }
@@ -33,11 +30,7 @@ class ShowcaseManager private constructor(private val builder: Builder) {
             return
         }
 
-        val intent = Intent(context, ShowcaseActivity::class.java)
-        intent.putParcelableArrayListExtra(ShowcaseActivity.EXTRAS_SHOWCASES, builder.showcaseModelList as ArrayList<out Parcelable>)
-        intent.putExtra(ShowcaseActivity.EXTRAS_SYSTEM_UI_VISIBILITY, getSystemUiVisibility())
-        (context as Activity).startActivityForResult(intent, REQUEST_CODE_SHOWCASE)
-        ShowcaseUtils.ShowcaseSP.instance(context).show(key)
+        triggerShow(builder.showcaseModelList as ArrayList<out Parcelable>, key)
     }
 
     private fun hasNullParameters(builder: Builder?): Boolean {
@@ -48,11 +41,6 @@ class ShowcaseManager private constructor(private val builder: Builder) {
 
         if (ShowcaseUtils.isNull(builder.context)) {
             Log.e(TAG, "Context can not be null.")
-            return true
-        }
-
-        if (builder.context !is Activity) {
-            Log.e(TAG, "Context must be instance of Activity.")
             return true
         }
 
@@ -73,12 +61,6 @@ class ShowcaseManager private constructor(private val builder: Builder) {
             return true
         }
         return false
-    }
-
-    private fun getSystemUiVisibility(): Boolean {
-        val window = (context as AppCompatActivity).window
-        val decorView = window.decorView
-        return decorView.systemUiVisibility == View.VISIBLE
     }
 
     class Builder {
