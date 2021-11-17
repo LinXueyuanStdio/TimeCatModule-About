@@ -12,7 +12,7 @@ import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.button.MaterialButton
 import com.tbuonomo.viewpagerdotsindicator.WormDotsIndicator
 import com.timecat.module.guide.R
-import com.timecat.module.guide.core.setParallaxTransformation
+import com.timecat.module.guide.anim.setParallaxTransformation
 import com.timecat.module.guide.cover.OnBoardingPageView
 import com.timecat.module.guide.onboarding.entity.OnBoardingPage
 
@@ -40,17 +40,7 @@ class OnBoardingView @JvmOverloads constructor(
     }
 
     private fun setUpSlider(view: View) {
-        mAdapter = OnBoardingPagerAdapter(listOf(
-            OnBoardingPageView(context).apply {
-                bind(OnBoardingPage.ONE)
-            },
-            OnBoardingPageView(context).apply {
-                bind(OnBoardingPage.TWO)
-            },
-            OnBoardingPageView(context).apply {
-                bind(OnBoardingPage.THREE)
-            }
-        ))
+        mAdapter = OnBoardingPagerAdapter(OnBoardingPage.values().toList())
         with(slider) {
             adapter = mAdapter
             setPageTransformer { page, position ->

@@ -1,4 +1,4 @@
-package com.timecat.module.guide.core
+package com.timecat.module.guide.anim
 
 import android.animation.Animator
 import android.animation.ObjectAnimator

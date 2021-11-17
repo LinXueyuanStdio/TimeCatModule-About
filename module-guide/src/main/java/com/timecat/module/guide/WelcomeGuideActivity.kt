@@ -14,6 +14,7 @@ import com.timecat.component.setting.DEF
 import com.timecat.element.alert.ToastUtil
 import com.timecat.identity.readonly.RouterHub
 import com.timecat.identity.service.UserService
+import com.timecat.layout.ui.layout.setShakelessClickListener
 import com.timecat.module.guide.timecat.*
 import com.timecat.page.base.base.simple.BaseSimpleRxActivity
 import com.xiaojinzi.component.anno.RouterAnno
@@ -28,15 +29,12 @@ class WelcomeGuideActivity : BaseSimpleRxActivity(), GuideService, GuideListener
     lateinit var mEnterBtn: Button
     lateinit var timecatGuideView: TimeCatGuideView
 
-    private var handler: Handler? = null
-
     @ServiceAutowiredAnno
     var userService: UserService? = null
 
     override fun layout(): Int = R.layout.welcome_activity_guide
 
     override fun bindView() {
-        handler = Handler()
         mJumpBtn = findViewById(R.id.jump)
         timecatGuideView = findViewById(R.id.guideView)
         mEnterBtn = findViewById(R.id.enter_timecat)
@@ -46,20 +44,21 @@ class WelcomeGuideActivity : BaseSimpleRxActivity(), GuideService, GuideListener
     private fun initView() {
         timecatGuideView.guideService = this
         timecatGuideView.guideListener = this
-        mEnterBtn.setOnClickListener { v: View? ->
+        mEnterBtn.setShakelessClickListener {
             DEF.config().save(HAVE_READ_INTRODUCED, true)
-            NAV.goAndFinish(this@WelcomeGuideActivity, RouterHub.WELCOME_PreSettingActivity)
+            NAV.goAndFinish(this, RouterHub.WELCOME_PreSettingActivity)
         }
-        mJumpBtn.setOnClickListener { v: View? ->
+        mJumpBtn.setShakelessClickListener {
             ToastUtil.i(R.string.jump_toast)
             DEF.config().save(HAVE_READ_INTRODUCED, true)
             if (userService != null && userService!!.isLogin) {
-                NAV.goAndFinish(this@WelcomeGuideActivity, RouterHub.MASTER_MainActivity)
+                NAV.goAndFinish(this, RouterHub.MASTER_MainActivity)
             } else {
-                NAV.goAndFinish(this@WelcomeGuideActivity, RouterHub.LOGIN_LoginActivity)
+                NAV.goAndFinish(this, RouterHub.LOGIN_LoginActivity)
             }
         }
         mJumpBtn.beVisibleIf(DEF.config().getBoolean(HAVE_READ_INTRODUCED, false))
+        timecatGuideView.onViewAttachedToWindow()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -93,20 +92,14 @@ class WelcomeGuideActivity : BaseSimpleRxActivity(), GuideService, GuideListener
     }
 
     override fun onBackPressed() {
-        if (guideView != null && guideView!!.isShown) {
-            guideView!!.hide()
-        }
+        timecatGuideView.onViewDetachedFromWindow()
         super.onBackPressed()
     }
 
     override fun onDestroy() {
-        if (guideView != null) {
-            guideView!!.hide()
-        }
-        guideView = null
+        timecatGuideView.onViewDetachedFromWindow()
         super.onDestroy()
     }
-
 
     companion object {
         private const val HAVE_READ_INTRODUCED = "introduced"

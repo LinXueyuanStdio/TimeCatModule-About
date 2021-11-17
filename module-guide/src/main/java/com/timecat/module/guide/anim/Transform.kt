@@ -1,4 +1,4 @@
-package com.timecat.module.guide.core
+package com.timecat.module.guide.anim
 
 import android.view.View
 import com.timecat.module.guide.R

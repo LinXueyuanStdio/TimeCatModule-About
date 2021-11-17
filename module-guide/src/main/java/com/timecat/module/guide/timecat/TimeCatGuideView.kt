@@ -39,7 +39,7 @@ class TimeCatGuideView @JvmOverloads constructor(
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0,
     defStyleRes: Int = 0
-) : FrameLayout(context, attrs, defStyleAttr, defStyleRes), BoardingLifeCycleListener {
+) : FrameLayout(context, attrs, defStyleAttr, defStyleRes) {
     private val mIntro: AppCompatTextView by lazy { findViewById(R.id.intro) }
     private val mTimeCatWraper: CardView by lazy { findViewById(R.id.parallaxView) }
     private val mTimeCatLayout: TimeCatLayoutWrapper by lazy { findViewById(R.id.timecat_wrap) }
@@ -356,22 +356,14 @@ class TimeCatGuideView @JvmOverloads constructor(
         }
     }
 
-    override fun onSelected() {
-    }
-
-    override fun onDeselected() {
-    }
-
-    override fun onViewAttachedToWindow() {
+    fun onViewAttachedToWindow() {
         showClickIntro()
     }
 
-    override fun onViewDetachedFromWindow() {
+    fun onViewDetachedFromWindow() {
         guideView.hide {
             guideService?.onHide(it)
         }
     }
 
-    override fun onBindViewHolder() {
-    }
 }

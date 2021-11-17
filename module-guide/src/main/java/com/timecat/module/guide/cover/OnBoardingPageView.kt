@@ -9,6 +9,7 @@ import com.timecat.layout.ui.layout.layout_height
 import com.timecat.layout.ui.layout.layout_width
 import com.timecat.layout.ui.layout.match_parent
 import com.timecat.module.guide.R
+import com.timecat.module.guide.onboarding.BoardingLifeCycleListener
 import com.timecat.module.guide.onboarding.entity.OnBoardingPage
 
 /**

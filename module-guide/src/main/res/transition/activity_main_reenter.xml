@@ -11,11 +11,11 @@
                 />
         </targets>
         <transition
-                class="com.timecat.module.guide.core.PopTransition"
+                class="com.timecat.module.guide.anim.PopTransition"
                 app:startScale="0.95"
                 app:endScale="1.0"/>
         <transition
-                class="com.timecat.module.guide.core.FadeTransition"
+                class="com.timecat.module.guide.anim.FadeTransition"
                 app:startAlpha="0.3"
                 app:endAlpha="1.0"/>
     </transitionSet>
