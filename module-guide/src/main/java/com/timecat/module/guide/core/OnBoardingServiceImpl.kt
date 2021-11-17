@@ -11,8 +11,8 @@ import com.timecat.module.guide.onboarding.OnBoardingView
  * @description null
  * @usage null
  */
-class OnBoardingServiceImpl : OnBoardingService {
-    override fun buildOnBoardingView(context: Context, onBoardingPageList: List<OnBoardingPage>, callback: OnBoardingCallback): View {
+class OnBoardingServiceImpl : com.timecat.component.guide.api.OnBoardingService {
+    override fun buildOnBoardingView(context: Context, onBoardingPageList: List<com.timecat.component.guide.api.OnBoardingPage>, callback: com.timecat.component.guide.api.OnBoardingCallback): View {
         val view = OnBoardingView(context)
         view.onBoardingPageList = onBoardingPageList
         view.callback = callback

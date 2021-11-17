@@ -2,9 +2,9 @@ package com.timecat.module.guide.onboarding
 
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.timecat.module.guide.core.OnBoardingPage
+import com.timecat.component.guide.api.OnBoardingPage
 
-class OnBoardingPagerAdapter(private val onBoardingPageList: List<OnBoardingPage>) : RecyclerView.Adapter<PagerViewHolder>() {
+class OnBoardingPagerAdapter(private val onBoardingPageList: List<com.timecat.component.guide.api.OnBoardingPage>) : RecyclerView.Adapter<PagerViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, p1: Int): PagerViewHolder {
         return PagerViewHolder(OnBoardingPageView(parent.context))
@@ -18,7 +18,7 @@ class OnBoardingPagerAdapter(private val onBoardingPageList: List<OnBoardingPage
 }
 
 class PagerViewHolder(private val root: OnBoardingPageView) : RecyclerView.ViewHolder(root) {
-    fun bind(onBoardingPage: OnBoardingPage) {
+    fun bind(onBoardingPage: com.timecat.component.guide.api.OnBoardingPage) {
         root.bind(onBoardingPage)
     }
 }

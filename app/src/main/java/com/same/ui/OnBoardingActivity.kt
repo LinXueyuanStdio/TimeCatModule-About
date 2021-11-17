@@ -3,9 +3,9 @@ package com.same.ui
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.timecat.module.guide.R
-import com.timecat.module.guide.core.OnBoardingCallback
+import com.timecat.component.guide.api.OnBoardingCallback
 import com.timecat.module.guide.onboarding.OnBoardingView
-import com.timecat.module.guide.core.OnBoardingPage
+import com.timecat.component.guide.api.OnBoardingPage
 
 class OnBoardingActivity : AppCompatActivity() {
 
@@ -15,19 +15,19 @@ class OnBoardingActivity : AppCompatActivity() {
         val view = findViewById<OnBoardingView>(R.id.container)
 
         val pages = listOf(
-            OnBoardingPage(
+            com.timecat.component.guide.api.OnBoardingPage(
                 getString(R.string.onboarding_slide1_title),
                 getString(R.string.onboarding_slide1_subtitle),
                 getString(R.string.onboarding_slide1_desc),
                 "R.drawable.ic_directions"
             ),
-            OnBoardingPage(
+            com.timecat.component.guide.api.OnBoardingPage(
                 getString(R.string.onboarding_slide2_title),
                 getString(R.string.onboarding_slide2_subtitle),
                 getString(R.string.onboarding_slide2_desc),
                 "R.drawable.ic_hang_out"
             ),
-            OnBoardingPage(
+            com.timecat.component.guide.api.OnBoardingPage(
                 getString(R.string.onboarding_slide2_title),
                 getString(R.string.onboarding_slide3_subtitle),
                 getString(R.string.onboarding_slide1_desc),
@@ -35,7 +35,7 @@ class OnBoardingActivity : AppCompatActivity() {
             )
         )
         view.onBoardingPageList = pages
-        view.callback = object : OnBoardingCallback {
+        view.callback = object : com.timecat.component.guide.api.OnBoardingCallback {
             override fun onSkip() {
                 finish()
             }

@@ -12,8 +12,8 @@ import com.google.android.material.button.MaterialButton
 import com.tbuonomo.viewpagerdotsindicator.WormDotsIndicator
 import com.timecat.module.guide.R
 import com.timecat.module.guide.anim.setParallaxTransformation
-import com.timecat.module.guide.core.OnBoardingCallback
-import com.timecat.module.guide.core.OnBoardingPage
+import com.timecat.component.guide.api.OnBoardingCallback
+import com.timecat.component.guide.api.OnBoardingPage
 
 class OnBoardingView @JvmOverloads constructor(
     context: Context,
@@ -40,14 +40,14 @@ class OnBoardingView @JvmOverloads constructor(
             }
         }
     }
-    var callback: OnBoardingCallback? = null
+    var callback: com.timecat.component.guide.api.OnBoardingCallback? = null
 
     init {
         LayoutInflater.from(context).inflate(R.layout.guide_view_onboarding, this, true)
         addingButtonsClickListeners()
     }
 
-    var onBoardingPageList: List<OnBoardingPage> = listOf()
+    var onBoardingPageList: List<com.timecat.component.guide.api.OnBoardingPage> = listOf()
         set(value) {
             mAdapter = OnBoardingPagerAdapter(value)
             slider.adapter = mAdapter

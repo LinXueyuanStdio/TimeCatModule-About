@@ -1,4 +1,4 @@
-package com.timecat.module.guide.core
+package com.timecat.component.guide.api
 
 import android.content.Context
 import android.view.View

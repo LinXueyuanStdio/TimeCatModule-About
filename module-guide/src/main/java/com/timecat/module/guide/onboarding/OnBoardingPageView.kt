@@ -10,7 +10,7 @@ import com.timecat.layout.ui.layout.layout_width
 import com.timecat.layout.ui.layout.match_parent
 import com.timecat.layout.ui.utils.IconLoader
 import com.timecat.module.guide.R
-import com.timecat.module.guide.core.OnBoardingPage
+import com.timecat.component.guide.api.OnBoardingPage
 
 /**
  * @author 林学渊
@@ -36,7 +36,7 @@ class OnBoardingPageView @JvmOverloads constructor(
         layout_height = match_parent
     }
 
-    fun bind(onBoardingPage: OnBoardingPage) {
+    fun bind(onBoardingPage: com.timecat.component.guide.api.OnBoardingPage) {
         titleTv.text = onBoardingPage.titleResource
         subTitleTv.text = onBoardingPage.subTitleResource
         descTV.text = onBoardingPage.descriptionResource
