@@ -68,7 +68,7 @@ class TimeCatGuideView @JvmOverloads constructor(
         private val firstAddTask = true
         override fun onSelected(text: String) {
             if (firstSelected) {
-                guideView!!.performClick()
+                guideView.performClick()
                 firstSelected = false
             }
         }
@@ -223,9 +223,22 @@ class TimeCatGuideView @JvmOverloads constructor(
 
     init {
         val view = LayoutInflater.from(context).inflate(R.layout.guide_view_timecat, this, true)
+        initView()
     }
 
-    private fun showClickIntro() {
+    private fun initView() {
+        mTimeCatLayout.setActionListener(timeCatActionListener)
+
+        for (t in txts_cloud) {
+            mTimeCatLayout.addTextItem(t)
+        }
+        mIntro.setOnLongClickListener { v: View? ->
+            guideView.performClick()
+            true
+        }
+    }
+
+    fun showClickIntro() {
         val tv = TextView(context)
         tv.setText(R.string.try_long_click_text)
         tv.setTextColor(resources.getColor(R.color.white))
@@ -282,18 +295,8 @@ class TimeCatGuideView @JvmOverloads constructor(
         guideView.setClickable(false)
         guideView.setLongClickable(false)
         guideView.setFocusable(false)
-        guideView.show()
-    }
-
-    private fun initView() {
-        mTimeCatLayout.setActionListener(timeCatActionListener)
-
-        for (t in txts_cloud) {
-            mTimeCatLayout.addTextItem(t)
-        }
-        mIntro.setOnLongClickListener { v: View? ->
-            guideView.performClick()
-            true
+        guideView.show {
+            guideService?.onShow(it)
         }
     }
 
@@ -342,7 +345,9 @@ class TimeCatGuideView @JvmOverloads constructor(
         guideView.setClickable(false)
         guideView.setLongClickable(false)
         guideView.setFocusable(false)
-        guideView.show()
+        guideView.show {
+            guideService?.onShow(it)
+        }
     }
 
 }

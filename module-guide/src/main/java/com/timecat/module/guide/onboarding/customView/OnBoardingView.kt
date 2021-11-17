@@ -16,6 +16,7 @@ import com.timecat.module.guide.cover.OnBoardingPageView
 import com.timecat.module.guide.domain.OnBoardingPrefManager
 import com.timecat.module.guide.onboarding.OnBoardingPagerAdapter
 import com.timecat.module.guide.onboarding.entity.OnBoardingPage
+import com.timecat.module.guide.timecat.TimeCatGuideView
 
 class OnBoardingView @JvmOverloads constructor(
     context: Context,
@@ -44,7 +45,16 @@ class OnBoardingView @JvmOverloads constructor(
     private fun setUpSlider(view: View) {
         with(slider) {
             adapter = OnBoardingPagerAdapter(listOf(
-                OnBoardingPageView(context)
+                TimeCatGuideView(context),
+                OnBoardingPageView(context).apply {
+                    bind(OnBoardingPage.ONE)
+                },
+                OnBoardingPageView(context).apply {
+                    bind(OnBoardingPage.TWO)
+                },
+                OnBoardingPageView(context).apply {
+                    bind(OnBoardingPage.THREE)
+                }
             ))
             setPageTransformer { page, position ->
                 setParallaxTransformation(page, position)
@@ -57,10 +67,10 @@ class OnBoardingView @JvmOverloads constructor(
 
 
     private fun addSlideChangeListener() {
-//slider.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
-//    override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
-//        slider.currentItem
-//    }})
+slider.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
+    override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
+        slider.currentItem
+    }})
         slider.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
             override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
                 super.onPageScrolled(position, positionOffset, positionOffsetPixels)
