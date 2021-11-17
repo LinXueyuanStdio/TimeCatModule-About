@@ -8,8 +8,8 @@ import android.widget.TextView
 import com.timecat.layout.ui.layout.layout_height
 import com.timecat.layout.ui.layout.layout_width
 import com.timecat.layout.ui.layout.match_parent
+import com.timecat.layout.ui.utils.IconLoader
 import com.timecat.module.guide.R
-import com.timecat.module.guide.onboarding.BoardingLifeCycleListener
 import com.timecat.module.guide.onboarding.entity.OnBoardingPage
 
 /**
@@ -37,10 +37,9 @@ class OnBoardingPageView @JvmOverloads constructor(
     }
 
     fun bind(onBoardingPage: OnBoardingPage) {
-        val res = context.resources
-        titleTv.text = res.getString(onBoardingPage.titleResource)
-        subTitleTv.text = res.getString(onBoardingPage.subTitleResource)
-        descTV.text = res.getString(onBoardingPage.descriptionResource)
-        parallaxView.setImageResource(onBoardingPage.logoResource)
+        titleTv.text = onBoardingPage.titleResource
+        subTitleTv.text = onBoardingPage.subTitleResource
+        descTV.text = onBoardingPage.descriptionResource
+        IconLoader.loadIcon(context, parallaxView, onBoardingPage.logoResource)
     }
 }

@@ -13,7 +13,6 @@ import com.google.android.material.button.MaterialButton
 import com.tbuonomo.viewpagerdotsindicator.WormDotsIndicator
 import com.timecat.module.guide.R
 import com.timecat.module.guide.anim.setParallaxTransformation
-import com.timecat.module.guide.cover.OnBoardingPageView
 import com.timecat.module.guide.onboarding.entity.OnBoardingPage
 
 class OnBoardingView @JvmOverloads constructor(
@@ -40,7 +39,27 @@ class OnBoardingView @JvmOverloads constructor(
     }
 
     private fun setUpSlider(view: View) {
-        mAdapter = OnBoardingPagerAdapter(OnBoardingPage.values().toList())
+        val pages = listOf(
+            OnBoardingPage(
+                context.getString(R.string.onboarding_slide1_title),
+                context.getString(R.string.onboarding_slide1_subtitle),
+                context.getString(R.string.onboarding_slide1_desc),
+                "R.drawable.ic_directions"
+            ),
+            OnBoardingPage(
+                context.getString(R.string.onboarding_slide2_title),
+                context.getString(R.string.onboarding_slide2_subtitle),
+                context.getString(R.string.onboarding_slide2_desc),
+                "R.drawable.ic_hang_out"
+            ),
+            OnBoardingPage(
+                context.getString(R.string.onboarding_slide2_title),
+                context.getString(R.string.onboarding_slide3_subtitle),
+                context.getString(R.string.onboarding_slide1_desc),
+                "R.drawable.ic_a_day_at_the_park"
+            )
+        )
+        mAdapter = OnBoardingPagerAdapter(pages)
         with(slider) {
             adapter = mAdapter
             setPageTransformer { page, position ->
