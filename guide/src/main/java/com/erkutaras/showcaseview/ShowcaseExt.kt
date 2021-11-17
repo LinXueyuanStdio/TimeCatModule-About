@@ -31,3 +31,7 @@ fun getSystemUiVisibility(activity: Activity): Boolean {
     val decorView = window.decorView
     return decorView.systemUiVisibility == View.VISIBLE
 }
+
+fun showOneGuide() {
+
+}

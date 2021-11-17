@@ -265,6 +265,12 @@ class TimeCatGuideView @JvmOverloads constructor(
             .setShape(GuideView.MyShape.CIRCULAR) // 设置圆形显示区域，
             .setOffset(0, mIntro.measuredHeight + 100)
             .setBgColor(resources.getColor(R.color.shadow))
+            .setOnViewAddedListener(object : GuideView.OnViewAddedListener {
+                override fun viewAdded(view: View) {
+                    view.animation = animation
+                    animation.start()
+                }
+            })
             .setOnclickListener(object : GuideView.OnClickCallback {
                 override fun onClickedGuideView() {
                     animation.cancel()
@@ -288,12 +294,7 @@ class TimeCatGuideView @JvmOverloads constructor(
                         }).start()
                 }
             })
-            .setOnViewAddedListener(object : GuideView.OnViewAddedListener {
-                override fun viewAdded(view: View) {
-                    view.animation = animation
-                    animation.start()
-                }
-            }).build {
+            .build {
                 guideService?.onHide(it)
             }
         guideView.setClickable(false)
@@ -328,6 +329,12 @@ class TimeCatGuideView @JvmOverloads constructor(
             .setRadius(5)
             .setOffset(0, mTimeCatWraper.getMeasuredHeight() / 2 + 100)
             .setBgColor(resources.getColor(R.color.shadow))
+            .setOnViewAddedListener(object : GuideView.OnViewAddedListener {
+                override fun viewAdded(view: View) {
+                    view.animation = animation
+                    animation.start()
+                }
+            })
             .setOnclickListener(object : GuideView.OnClickCallback {
                 override fun onClickedGuideView() {
                     animation.cancel()
@@ -338,12 +345,7 @@ class TimeCatGuideView @JvmOverloads constructor(
                     mFunctionIntroTV.visibility = VISIBLE
                 }
             })
-            .setOnViewAddedListener(object : GuideView.OnViewAddedListener {
-                override fun viewAdded(view: View) {
-                    view.animation = animation
-                    animation.start()
-                }
-            }).build {
+            .build {
                 guideService?.onHide(it)
             }
         guideView.setClickable(false)

@@ -26,6 +26,7 @@ import com.timecat.layout.ui.layout.setShakelessClickListener
 import com.timecat.layout.ui.standard.ColorTextView
 import com.timecat.page.base.base.simple.BaseSimpleRxActivity
 import com.xiaojinzi.component.anno.RouterAnno
+import com.timecat.module.guide.R
 
 /**
  * 欢迎页面，启动页

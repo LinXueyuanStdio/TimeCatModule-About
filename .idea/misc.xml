@@ -10,6 +10,7 @@
       <map>
         <entry key="guide/src/main/res/layout/layout_intro_description.xml" value="0.17346014492753623" />
         <entry key="guide/src/main/res/layout/next_previous_buttons_layout.xml" value="0.1" />
+        <entry key="module-guide/src/main/res/layout/guide_view_onboarding.xml" value="0.18414387031408308" />
         <entry key="module-guide/src/main/res/layout/guide_view_timecat.xml" value="0.1" />
       </map>
     </option>
