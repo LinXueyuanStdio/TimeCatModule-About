@@ -16,6 +16,8 @@ import com.timecat.module.guide.cover.OnBoardingPageView
 import com.timecat.module.guide.domain.OnBoardingPrefManager
 import com.timecat.module.guide.onboarding.OnBoardingPagerAdapter
 import com.timecat.module.guide.onboarding.entity.OnBoardingPage
+import com.timecat.module.guide.timecat.GuideService
+import com.timecat.module.guide.timecat.GuideView
 import com.timecat.module.guide.timecat.TimeCatGuideView
 
 class OnBoardingView @JvmOverloads constructor(
@@ -45,7 +47,15 @@ class OnBoardingView @JvmOverloads constructor(
     private fun setUpSlider(view: View) {
         with(slider) {
             adapter = OnBoardingPagerAdapter(listOf(
-                TimeCatGuideView(context),
+                TimeCatGuideView(context).apply {
+                    guideService = object : GuideService {
+                        override fun onHide(view: GuideView) {
+                        }
+
+                        override fun onShow(view: GuideView) {
+                        }
+                    }
+                },
                 OnBoardingPageView(context).apply {
                     bind(OnBoardingPage.ONE)
                 },

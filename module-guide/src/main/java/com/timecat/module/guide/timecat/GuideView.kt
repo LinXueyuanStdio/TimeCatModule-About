@@ -73,7 +73,7 @@ class GuideView(private var mContent: Context?) : RelativeLayout(mContent), OnGl
     /**
      * targetView圆心
      */
-    lateinit var center: IntArray
+    var center: IntArray = IntArray(2)
 
     /**
      * 绘图层叠模式
@@ -436,15 +436,13 @@ class GuideView(private var mContent: Context?) : RelativeLayout(mContent), OnGl
         }
 
         // 获取targetView的中心坐标
-        if (center == null) {
-            // 获取右上角坐标
-            location = IntArray(2)
-            targetView!!.getLocationInWindow(location)
-            center = IntArray(2)
-            // 获取中心坐标
-            center[0] = location[0] + targetView!!.width / 2
-            center[1] = location[1] + targetView!!.height / 2
-        }
+        // 获取右上角坐标
+        location = IntArray(2)
+        targetView!!.getLocationInWindow(location)
+        center = IntArray(2)
+        // 获取中心坐标
+        center[0] = location[0] + targetView!!.width / 2
+        center[1] = location[1] + targetView!!.height / 2
         // 获取targetView外切圆半径
         if (radius == 0) {
             radius = targetViewRadius

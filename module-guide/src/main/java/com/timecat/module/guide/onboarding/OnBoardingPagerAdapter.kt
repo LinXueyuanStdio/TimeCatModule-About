@@ -7,7 +7,8 @@ import androidx.recyclerview.widget.RecyclerView
 class OnBoardingPagerAdapter(private val onBoardingPageList: List<View>) : RecyclerView.Adapter<PagerViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, p1: Int): PagerViewHolder {
-        return PagerViewHolder(onBoardingPageList[p1])
+        val view = onBoardingPageList[p1]
+        return PagerViewHolder(view)
     }
 
     override fun getItemCount() = onBoardingPageList.size
