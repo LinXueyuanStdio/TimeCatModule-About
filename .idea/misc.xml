@@ -14,6 +14,7 @@
         <entry key="module-guide/src/main/res/layout/guide_view_onboarding.xml" value="0.18414387031408308" />
         <entry key="module-guide/src/main/res/layout/guide_view_timecat.xml" value="0.1" />
         <entry key="module-guide/src/main/res/layout/welcome_activity_guide.xml" value="0.27445652173913043" />
+        <entry key="module-guide/src/main/res/layout/welcome_activity_presetting.xml" value="0.27445652173913043" />
       </map>
     </option>
   </component>
