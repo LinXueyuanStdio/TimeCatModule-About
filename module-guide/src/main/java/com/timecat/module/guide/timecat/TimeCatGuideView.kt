@@ -42,6 +42,8 @@ class TimeCatGuideView @JvmOverloads constructor(
     private val mTimeCatWraper: CardView by lazy { findViewById(R.id.timecat_wraper) }
     private val mTimeCatLayout: TimeCatLayoutWrapper by lazy { findViewById(R.id.timecat_wrap) }
     private val mFunctionIntroTV: AppCompatTextView by lazy { findViewById(R.id.enter_timecat_intro) }
+    var guideListener: GuideListener? = null
+
     private lateinit var guideView: GuideView
     var clickTimes = 0
     private val txts_cloud: Array<String> = arrayOf(
@@ -83,13 +85,13 @@ class TimeCatGuideView @JvmOverloads constructor(
                         Uri.parse("https://www.baidu.com/s?wd=" + URLEncoder.encode(text, "utf-8"))
                     )
                     intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-                    startActivity(intent)
+                    context.startActivity(intent)
                 } catch (e: UnsupportedEncodingException) {
                     e.printStackTrace()
                 }
             }
             clickTimes++
-            showEnterBtn()
+            guideListener?.onNextEnable()
         }
 
         override fun onShare(text: String) {
@@ -103,10 +105,10 @@ class TimeCatGuideView @JvmOverloads constructor(
                 sharingIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
                 sharingIntent.type = "text/plain"
                 sharingIntent.putExtra(Intent.EXTRA_TEXT, text)
-                startActivity(sharingIntent)
+                context.startActivity(sharingIntent)
             }
             clickTimes++
-            showEnterBtn()
+            guideListener?.onNextEnable()
         }
 
         override fun onCopy(text: String) {
@@ -117,12 +119,12 @@ class TimeCatGuideView @JvmOverloads constructor(
                 mFunctionIntroTV.animate().scaleY(1f).scaleX(1f).start()
             } else {
                 if (!TextUtils.isEmpty(text)) {
-                    ClipboardUtils.setText(getApplicationContext(), text)
+                    ClipboardUtils.setText(context, text)
                     ToastUtil.ok(R.string.copyed)
                 }
             }
             clickTimes++
-            showEnterBtn()
+            guideListener?.onNextEnable()
         }
 
         override fun onTrans(text: String) {
@@ -137,7 +139,7 @@ class TimeCatGuideView @JvmOverloads constructor(
                 }
             }
             clickTimes++
-            showEnterBtn()
+            guideListener?.onNextEnable()
         }
 
         override fun onAddTask(text: String) {
@@ -148,11 +150,11 @@ class TimeCatGuideView @JvmOverloads constructor(
                 mFunctionIntroTV.animate().scaleY(1f).scaleX(1f).start()
             } else {
                 if (!TextUtils.isEmpty(text)) {
-                    SnackBarUtil.show(mIntro, getString(R.string.open_timecat_for_task))
+                    SnackBarUtil.show(mIntro, context.getString(R.string.open_timecat_for_task))
                 }
             }
             clickTimes++
-            showEnterBtn()
+            guideListener?.onNextEnable()
         }
 
         override fun onDrag() {
@@ -166,7 +168,7 @@ class TimeCatGuideView @JvmOverloads constructor(
             mFunctionIntroTV.setScaleX(0f)
             mFunctionIntroTV.animate().scaleY(1f).scaleX(1f).start()
             clickTimes++
-            showEnterBtn()
+            guideListener?.onNextEnable()
         }
 
         override fun onSwitchType(isLocal: Boolean) {
@@ -187,7 +189,7 @@ class TimeCatGuideView @JvmOverloads constructor(
             mFunctionIntroTV.setScaleX(0f)
             mFunctionIntroTV.animate().scaleY(1f).scaleX(1f).start()
             clickTimes++
-            showEnterBtn()
+            guideListener?.onNextEnable()
         }
 
         override fun onSwitchSymbol(isShow: Boolean) {
@@ -196,7 +198,7 @@ class TimeCatGuideView @JvmOverloads constructor(
             mFunctionIntroTV.setScaleX(0f)
             mFunctionIntroTV.animate().scaleY(1f).scaleX(1f).start()
             clickTimes++
-            showEnterBtn()
+            guideListener?.onNextEnable()
         }
 
         override fun onSwitchSection(isShow: Boolean) {
@@ -205,7 +207,7 @@ class TimeCatGuideView @JvmOverloads constructor(
             mFunctionIntroTV.setScaleX(0f)
             mFunctionIntroTV.animate().scaleY(1f).scaleX(1f).start()
             clickTimes++
-            showEnterBtn()
+            guideListener?.onNextEnable()
         }
 
         override fun onDragSelection() {
@@ -214,7 +216,7 @@ class TimeCatGuideView @JvmOverloads constructor(
             mFunctionIntroTV.setScaleX(0f)
             mFunctionIntroTV.animate().scaleY(1f).scaleX(1f).start()
             clickTimes++
-            showEnterBtn()
+            guideListener?.onNextEnable()
         }
     }
 
@@ -311,7 +313,7 @@ class TimeCatGuideView @JvmOverloads constructor(
             .setOnclickListener {
                 animation.cancel()
                 guideView.hide()
-                showEnterBtn()
+                guideListener?.onNextEnable()
                 mFunctionIntroTV.visibility = VISIBLE
             }
             .setOnViewAddedListener { view: View ->
