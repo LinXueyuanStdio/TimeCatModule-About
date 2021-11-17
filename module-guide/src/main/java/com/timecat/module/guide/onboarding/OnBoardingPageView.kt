@@ -36,7 +36,7 @@ class OnBoardingPageView @JvmOverloads constructor(
         layout_height = match_parent
     }
 
-    fun bind(onBoardingPage: com.timecat.component.guide.api.OnBoardingPage) {
+    fun bind(onBoardingPage: OnBoardingPage) {
         titleTv.text = onBoardingPage.titleResource
         subTitleTv.text = onBoardingPage.subTitleResource
         descTV.text = onBoardingPage.descriptionResource

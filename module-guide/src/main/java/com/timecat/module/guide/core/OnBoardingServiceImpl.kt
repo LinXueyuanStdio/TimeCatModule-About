@@ -3,6 +3,7 @@ package com.timecat.module.guide.core
 import android.content.Context
 import android.view.View
 import com.timecat.module.guide.onboarding.OnBoardingView
+import com.xiaojinzi.component.anno.ServiceAnno
 
 /**
  * @author 林学渊
@@ -11,8 +12,9 @@ import com.timecat.module.guide.onboarding.OnBoardingView
  * @description null
  * @usage null
  */
-class OnBoardingServiceImpl : com.timecat.component.guide.api.OnBoardingService {
-    override fun buildOnBoardingView(context: Context, onBoardingPageList: List<com.timecat.component.guide.api.OnBoardingPage>, callback: com.timecat.component.guide.api.OnBoardingCallback): View {
+@ServiceAnno
+class OnBoardingServiceImpl : OnBoardingService {
+    override fun buildOnBoardingView(context: Context, onBoardingPageList: List<OnBoardingPage>, callback: OnBoardingCallback): View {
         val view = OnBoardingView(context)
         view.onBoardingPageList = onBoardingPageList
         view.callback = callback

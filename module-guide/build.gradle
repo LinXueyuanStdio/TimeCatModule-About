@@ -12,7 +12,10 @@ dependencies {
     api rootProject.ext.timecat["component-SelfRouter"]
     api rootProject.ext.timecat["component-SelfService"]
     api rootProject.ext.timecat["component-SelfDSL"]
-    implementation 'com.tbuonomo.andrui:viewpagerdotsindicator:4.1.2'
+
+    api rootProject.ext.timecat["guide-api"]
+
+    api 'com.tbuonomo.andrui:viewpagerdotsindicator:4.1.2'
     api project(":guide")
 }
 
