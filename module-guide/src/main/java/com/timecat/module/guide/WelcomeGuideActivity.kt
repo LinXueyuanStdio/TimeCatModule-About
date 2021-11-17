@@ -1,16 +1,12 @@
 package com.timecat.module.guide
 
 import android.os.Bundle
-import android.os.Handler
 import android.view.View
 import android.view.Window
-import android.view.WindowInsetsController
 import android.view.WindowManager
 import android.view.animation.AnticipateOvershootInterpolator
 import android.widget.Button
 import android.widget.TextView
-import androidx.core.view.WindowInsetsCompat
-import androidx.core.view.WindowInsetsControllerCompat
 import com.timecat.component.commonsdk.extension.beVisibleIf
 import com.timecat.component.router.app.NAV
 import com.timecat.component.setting.DEF
@@ -35,7 +31,7 @@ class WelcomeGuideActivity : BaseSimpleRxActivity(), GuideService, GuideListener
     @ServiceAutowiredAnno
     var userService: UserService? = null
 
-    override fun layout(): Int = R.layout.welcome_activity_guide
+    override fun layout(): Int = R.layout.guide_activity_guide
 
     override fun bindView() {
         mJumpBtn = findViewById(R.id.jump)

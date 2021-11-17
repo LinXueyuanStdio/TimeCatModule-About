@@ -6,7 +6,6 @@ import android.net.Uri
 import android.os.Build
 import android.os.Handler
 import android.provider.Settings
-import android.view.KeyEvent
 import android.view.View
 import android.view.animation.AnticipateOvershootInterpolator
 import android.widget.CheckBox
@@ -26,7 +25,6 @@ import com.timecat.layout.ui.layout.setShakelessClickListener
 import com.timecat.layout.ui.standard.ColorTextView
 import com.timecat.page.base.base.simple.BaseSimpleRxActivity
 import com.xiaojinzi.component.anno.RouterAnno
-import com.timecat.module.guide.R
 
 /**
  * 欢迎页面，启动页
@@ -46,7 +44,7 @@ class PreSettingActivity : BaseSimpleRxActivity() {
     private var isClickFloat = false
     private var isClickNotify = false
 
-    override fun layout(): Int = R.layout.welcome_activity_presetting
+    override fun layout(): Int = R.layout.guide_activity_presetting
 
     override fun bindView() {
         initView()

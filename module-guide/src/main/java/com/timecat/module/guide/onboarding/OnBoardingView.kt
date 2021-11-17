@@ -31,56 +31,39 @@ class OnBoardingView @JvmOverloads constructor(
     private val startBtn: MaterialButton by lazy { findViewById<MaterialButton>(R.id.startBtn) }
     private val skipBtn: MaterialButton by lazy { findViewById<MaterialButton>(R.id.skipBtn) }
     lateinit var mAdapter: RecyclerView.Adapter<*>
+    val pagerCallback = object : ViewPager2.OnPageChangeCallback() {
+        override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
+            super.onPageScrolled(position, positionOffset, positionOffsetPixels)
+            if (numberOfPages > 1) {
+                val newProgress = (position + positionOffset) / (numberOfPages - 1)
+                onboardingRoot.progress = newProgress
+            }
+        }
+    }
+    var callback: OnBoardingCallback? = null
 
     init {
-        val view = LayoutInflater.from(context).inflate(R.layout.guide_view_onboarding, this, true)
-        setUpSlider(view)
+        LayoutInflater.from(context).inflate(R.layout.guide_view_onboarding, this, true)
         addingButtonsClickListeners()
     }
 
-    private fun setUpSlider(view: View) {
-        val pages = listOf(
-            OnBoardingPage(
-                context.getString(R.string.onboarding_slide1_title),
-                context.getString(R.string.onboarding_slide1_subtitle),
-                context.getString(R.string.onboarding_slide1_desc),
-                "R.drawable.ic_directions"
-            ),
-            OnBoardingPage(
-                context.getString(R.string.onboarding_slide2_title),
-                context.getString(R.string.onboarding_slide2_subtitle),
-                context.getString(R.string.onboarding_slide2_desc),
-                "R.drawable.ic_hang_out"
-            ),
-            OnBoardingPage(
-                context.getString(R.string.onboarding_slide2_title),
-                context.getString(R.string.onboarding_slide3_subtitle),
-                context.getString(R.string.onboarding_slide1_desc),
-                "R.drawable.ic_a_day_at_the_park"
-            )
-        )
-        mAdapter = OnBoardingPagerAdapter(pages)
+    var onBoardingPageList: List<OnBoardingPage> = listOf()
+        set(value) {
+            mAdapter = OnBoardingPagerAdapter(value)
+            slider.adapter = mAdapter
+            setUpSlider()
+            field = value
+        }
+
+    private fun setUpSlider() {
         with(slider) {
-            adapter = mAdapter
             setPageTransformer { page, position ->
                 setParallaxTransformation(page, position)
             }
-
-            addSlideChangeListener()
+            slider.unregisterOnPageChangeCallback(pagerCallback)
+            slider.registerOnPageChangeCallback(pagerCallback)
             pageIndicator.setViewPager2(this)
         }
-    }
-
-    private fun addSlideChangeListener() {
-        slider.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
-            override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
-                super.onPageScrolled(position, positionOffset, positionOffsetPixels)
-                if (numberOfPages > 1) {
-                    val newProgress = (position + positionOffset) / (numberOfPages - 1)
-                    onboardingRoot.progress = newProgress
-                }
-            }
-        })
     }
 
     private fun addingButtonsClickListeners() {
@@ -88,8 +71,10 @@ class OnBoardingView @JvmOverloads constructor(
             navigateToNextSlide()
         }
         skipBtn.setOnClickListener {
+            callback?.onSkip()
         }
         startBtn.setOnClickListener {
+            callback?.onFinish()
         }
     }
 
