@@ -16,10 +16,10 @@ class MainActivity : Activity() {
         super.onCreate(savedInstanceState)
         val linearLayout = LinearLayout(this)
         linearLayout.orientation = LinearLayout.VERTICAL
-        linearLayout.addView(createButton("登录", RouterHub.LOGIN_LoginActivity))
-        linearLayout.addView(createButton("添加插件", RouterHub.USER_AddPluginAppActivity))
-        linearLayout.addView(createButton("添加动态", RouterHub.USER_AddMomentActivity))
-        linearLayout.addView(createButton("背包", RouterHub.USER_BagActivity))
+        linearLayout.addView(createButton("进入", RouterHub.WELCOME_WelcomeActivity))
+        linearLayout.addView(createButton("介绍", RouterHub.WELCOME_IntroActivity))
+        linearLayout.addView(createButton("引导", RouterHub.WELCOME_WelcomeGuideActivity))
+        linearLayout.addView(createButton("预设", RouterHub.WELCOME_PreSettingActivity))
         setContentView(linearLayout)
     }
 

@@ -12,5 +12,6 @@ dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation rootProject.ext.androidx_lib["appcompat"]
     api project(':module-about')
+    api project(':module-guide')
     api project(':module-welcome')
 }

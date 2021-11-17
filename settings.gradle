@@ -4,4 +4,5 @@ apply from: "context.gradle"
 
 include ':app'
 include ':module-about'
+include ':module-guide'
 include ':module-welcome'

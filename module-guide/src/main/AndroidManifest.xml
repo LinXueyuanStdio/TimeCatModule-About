@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.timecat.module.welcome">
+    package="com.timecat.module.guide">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -12,12 +12,12 @@
 
     <application>
         <activity
-            android:name="com.timecat.module.welcome.mvp.ui.WelcomeActivity"
+            android:name="com.timecat.module.guide.WelcomeGuideActivity"
             android:configChanges="keyboard|keyboardHidden|orientation|screenSize|uiMode"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".mvp.ui.IntroActivity"
-            android:configChanges="keyboard|keyboardHidden|orientation|screenSize|uiMode"
-            android:launchMode="singleTask" />
+            android:name="com.timecat.module.guide.PreSettingActivity"
+            android:launchMode="singleTask"
+            android:windowSoftInputMode="adjustPan" />
     </application>
 </manifest>

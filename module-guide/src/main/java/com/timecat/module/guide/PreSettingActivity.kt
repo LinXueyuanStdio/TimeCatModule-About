@@ -1,4 +1,4 @@
-package com.timecat.module.welcome.mvp.ui
+package com.timecat.module.guide
 
 import android.animation.Animator
 import android.content.Intent
@@ -20,12 +20,10 @@ import com.timecat.component.identity.Attr
 import com.timecat.component.router.app.NAV
 import com.timecat.component.setting.DEF
 import com.timecat.element.alert.SnackBarUtil
-import com.timecat.identity.anim.AnimatorUtils
 import com.timecat.identity.readonly.Constants
 import com.timecat.identity.readonly.RouterHub
 import com.timecat.layout.ui.layout.setShakelessClickListener
 import com.timecat.layout.ui.standard.ColorTextView
-import com.timecat.module.welcome.R
 import com.timecat.page.base.base.simple.BaseSimpleRxActivity
 import com.xiaojinzi.component.anno.RouterAnno
 
@@ -89,7 +87,8 @@ class PreSettingActivity : BaseSimpleRxActivity() {
         control_setting_title.setColorTextColor(color)
         control_setting_title.setColorText(resources.getString(R.string.pre_setting_intro1))
         control_setting_title.setShakelessClickListener {
-            ClipboardUtils.setText(this,
+            ClipboardUtils.setText(
+                this,
                 resources.getString(R.string.pre_setting_intro2)
             )
         }

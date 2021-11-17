@@ -5,8 +5,6 @@ import android.os.Bundle;
 import android.view.Window;
 import android.view.WindowManager;
 
-import androidx.annotation.Nullable;
-
 import com.jaredrummler.android.widget.AnimatedSvgView;
 import com.timecat.component.router.app.NAV;
 import com.timecat.component.setting.DEF;
@@ -15,6 +13,8 @@ import com.timecat.identity.readonly.RouterHub;
 import com.timecat.module.welcome.R;
 import com.timecat.page.base.base.theme.BaseThemeActivity;
 import com.xiaojinzi.component.anno.RouterAnno;
+
+import androidx.annotation.Nullable;
 
 /**
  * 欢迎页面，启动页
@@ -25,7 +25,6 @@ public class WelcomeActivity extends BaseThemeActivity {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
-        NAV.inject(this);
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         this.getWindow().setFlags(
                 WindowManager.LayoutParams.FLAG_FULLSCREEN,
@@ -42,7 +41,7 @@ public class WelcomeActivity extends BaseThemeActivity {
         if (DEF.config().getBoolean(AppConstants.FIRST_OPEN, true)) {
             svgView.setOnStateChangeListener(state -> {
                 if (state == AnimatedSvgView.STATE_FINISHED) {
-                    NAV.goAndFinish(this, RouterHub.WELCOME_WelcomeGuideActivity);
+                    NAV.goAndFinish(this, RouterHub.WELCOME_IntroActivity);
                 }
             });
             svgView.start();

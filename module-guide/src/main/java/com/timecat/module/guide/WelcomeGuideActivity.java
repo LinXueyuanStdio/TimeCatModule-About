@@ -1,4 +1,4 @@
-package com.timecat.module.welcome.mvp.ui;
+package com.timecat.module.guide;
 
 import android.animation.Animator;
 import android.content.Intent;
@@ -16,9 +16,6 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import androidx.annotation.Nullable;
-import androidx.cardview.widget.CardView;
-
 import com.timecat.component.commonsdk.utils.clipboard.ClipboardUtils;
 import com.timecat.component.router.app.NAV;
 import com.timecat.component.setting.DEF;
@@ -28,13 +25,15 @@ import com.timecat.identity.readonly.RouterHub;
 import com.timecat.identity.service.UserService;
 import com.timecat.layout.ui.business.GuideView;
 import com.timecat.layout.ui.business.timecat.TimeCatLayoutWrapper;
-import com.timecat.module.welcome.R;
 import com.timecat.page.base.base.simple.BaseSimpleRxActivity;
 import com.xiaojinzi.component.anno.RouterAnno;
 import com.xiaojinzi.component.anno.ServiceAutowiredAnno;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+
+import androidx.annotation.Nullable;
+import androidx.cardview.widget.CardView;
 
 /**
  * 引导页面
@@ -43,6 +42,7 @@ import java.net.URLEncoder;
 public class WelcomeGuideActivity extends BaseSimpleRxActivity {
 
     private static final String HAVE_READ_INTRODUCED = "introduced";
+
     public int clickTimes = 0;
     TextView mIntro;
     TextView mJumpBtn;
@@ -227,6 +227,7 @@ public class WelcomeGuideActivity extends BaseSimpleRxActivity {
             showEnterBtn();
         }
     };
+
     @Nullable
     @ServiceAutowiredAnno
     UserService userService;
@@ -235,7 +236,6 @@ public class WelcomeGuideActivity extends BaseSimpleRxActivity {
     public void onPause() {
         super.onPause();
         // 如果切换到后台，就设置下次不进入功能引导页
-        DEF.config().save(AppConstants.FIRST_OPEN, false);
         DEF.config().save(HAVE_READ_INTRODUCED, true);
         finish();
     }
@@ -370,13 +370,11 @@ public class WelcomeGuideActivity extends BaseSimpleRxActivity {
             return true;
         });
         mEnterBtn.setOnClickListener(v -> {
-            DEF.config().save(AppConstants.FIRST_OPEN, false);
             DEF.config().save(HAVE_READ_INTRODUCED, true);
             NAV.goAndFinish(WelcomeGuideActivity.this, RouterHub.WELCOME_PreSettingActivity);
         });
         mJumpBtn.setOnClickListener(v -> {
             ToastUtil.i(R.string.jump_toast);
-            DEF.config().save(AppConstants.FIRST_OPEN, false);
             DEF.config().save(HAVE_READ_INTRODUCED, true);
             if (userService != null && userService.isLogin()) {
                 NAV.goAndFinish(WelcomeGuideActivity.this, RouterHub.MASTER_MainActivity);
@@ -446,9 +444,7 @@ public class WelcomeGuideActivity extends BaseSimpleRxActivity {
     }
 
     private void showEnterBtn() {
-        if (clickTimes >= 5
-                || DEF.config().getBoolean(AppConstants.FIRST_OPEN, true)
-                || DEF.config().getBoolean(HAVE_READ_INTRODUCED, false)) {
+        if (clickTimes >= 5 || DEF.config().getBoolean(HAVE_READ_INTRODUCED, false)) {
             if (mEnterBtn.getVisibility() != View.VISIBLE) {
                 mEnterBtn.setVisibility(View.VISIBLE);
                 mEnterBtn.setScaleY(0);
