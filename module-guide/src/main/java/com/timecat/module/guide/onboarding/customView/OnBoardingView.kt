@@ -12,6 +12,7 @@ import com.google.android.material.button.MaterialButton
 import com.tbuonomo.viewpagerdotsindicator.WormDotsIndicator
 import com.timecat.module.guide.R
 import com.timecat.module.guide.core.setParallaxTransformation
+import com.timecat.module.guide.cover.OnBoardingPageView
 import com.timecat.module.guide.domain.OnBoardingPrefManager
 import com.timecat.module.guide.onboarding.OnBoardingPagerAdapter
 import com.timecat.module.guide.onboarding.entity.OnBoardingPage
@@ -42,7 +43,9 @@ class OnBoardingView @JvmOverloads constructor(
 
     private fun setUpSlider(view: View) {
         with(slider) {
-            adapter = OnBoardingPagerAdapter()
+            adapter = OnBoardingPagerAdapter(listOf(
+                OnBoardingPageView(context)
+            ))
             setPageTransformer { page, position ->
                 setParallaxTransformation(page, position)
             }
@@ -54,7 +57,10 @@ class OnBoardingView @JvmOverloads constructor(
 
 
     private fun addSlideChangeListener() {
-
+//slider.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
+//    override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
+//        slider.currentItem
+//    }})
         slider.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
             override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
                 super.onPageScrolled(position, positionOffset, positionOffsetPixels)

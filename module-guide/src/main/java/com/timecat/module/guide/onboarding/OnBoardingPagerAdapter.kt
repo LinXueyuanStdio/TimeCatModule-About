@@ -1,46 +1,49 @@
 package com.timecat.module.guide.onboarding
 
-import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.timecat.module.guide.R
-import com.timecat.module.guide.onboarding.entity.OnBoardingPage
 
-class OnBoardingPagerAdapter(private val onBoardingPageList: Array<OnBoardingPage> = OnBoardingPage.values()) : RecyclerView.Adapter<PagerViewHolder>() {
+class OnBoardingPagerAdapter(private val onBoardingPageList: List<View>) : RecyclerView.Adapter<PagerViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, p1: Int): PagerViewHolder {
-        return PagerViewHolder.create(parent)
+        return PagerViewHolder(onBoardingPageList[p1])
     }
 
     override fun getItemCount() = onBoardingPageList.size
 
     override fun onBindViewHolder(holder: PagerViewHolder, position: Int) {
-        holder.bind(onBoardingPageList[position])
+        holder.onBindViewHolder()
+    }
+
+    override fun onViewDetachedFromWindow(holder: PagerViewHolder) {
+        super.onViewDetachedFromWindow(holder)
+        holder.onViewDetachedFromWindow()
+    }
+
+    override fun onViewAttachedToWindow(holder: PagerViewHolder) {
+        super.onViewAttachedToWindow(holder)
+        holder.onViewAttachedToWindow()
     }
 }
 
 class PagerViewHolder(private val root: View) : RecyclerView.ViewHolder(root) {
-    private val titleTv: TextView by lazy { root.findViewById<TextView>(R.id.titleTv) }
-    private val subTitleTv: TextView by lazy { root.findViewById<TextView>(R.id.subTitleTv) }
-    private val img: ImageView by lazy { root.findViewById<ImageView>(R.id.img) }
-    private val descTV: TextView by lazy { root.findViewById<TextView>(R.id.descTV) }
 
-    fun bind(onBoardingPage: OnBoardingPage) {
-        val res = root.context.resources
-        titleTv.text = res.getString(onBoardingPage.titleResource)
-        subTitleTv.text = res.getString(onBoardingPage.subTitleResource)
-        descTV.text = res.getString(onBoardingPage.descriptionResource)
-        img.setImageResource(onBoardingPage.logoResource)
+    fun onBindViewHolder() {
+        if (root is BoardingLifeCycleListener) {
+            root.onBindViewHolder()
+        }
     }
 
-    companion object {
-        fun create(parent: ViewGroup): PagerViewHolder {
-            return LayoutInflater.from(parent.context).inflate(
-                R.layout.guide_onboarding_page_item, parent, false
-            ).let { PagerViewHolder(it) }
+    fun onViewDetachedFromWindow() {
+        if (root is BoardingLifeCycleListener) {
+            root.onViewDetachedFromWindow()
+        }
+    }
+
+    fun onViewAttachedToWindow() {
+        if (root is BoardingLifeCycleListener) {
+            root.onViewAttachedToWindow()
         }
     }
 }
