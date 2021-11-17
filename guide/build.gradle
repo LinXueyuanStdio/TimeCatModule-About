@@ -1,6 +1,18 @@
 apply from: "${project.rootDir}/gradle/library_header.gradle"
-apply plugin:"kotlin-android"
-apply plugin:"kotlin-parcelize"
+apply plugin: "kotlin-android"
+apply plugin: "kotlin-parcelize"
+
+android {
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
+    }
+
+    kotlinOptions {
+        jvmTarget = "11"
+        useIR = true
+    }
+}
 
 dependencies {
     api fileTree(dir: 'libs', include: ['*.jar'])

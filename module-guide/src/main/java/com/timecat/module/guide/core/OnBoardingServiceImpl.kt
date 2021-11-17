@@ -15,7 +15,7 @@ import com.xiaojinzi.component.anno.ServiceAnno
  * @description null
  * @usage null
  */
-@ServiceAnno
+@ServiceAnno(OnBoardingService::class)
 class OnBoardingServiceImpl : OnBoardingService {
     override fun buildOnBoardingView(context: Context, onBoardingPageList: List<OnBoardingPage>, callback: OnBoardingCallback): View {
         val view = OnBoardingView(context)

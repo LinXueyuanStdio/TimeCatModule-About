@@ -33,7 +33,7 @@ class OnBoardingActivity : AppCompatActivity() {
                 "R.drawable.ic_a_day_at_the_park"
             )
         )
-        val view = service?.buildOnBoardingView(
+        service?.buildOnBoardingView(
             this,
             pages,
             object : OnBoardingCallback {
@@ -45,7 +45,8 @@ class OnBoardingActivity : AppCompatActivity() {
                     finish()
                 }
             }
-        )
-        setContentView(view)
+        )?.let {
+            setContentView(it)
+        }
     }
 }

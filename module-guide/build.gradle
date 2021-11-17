@@ -14,9 +14,9 @@ dependencies {
     api rootProject.ext.timecat["component-SelfDSL"]
 
     api rootProject.ext.timecat["guide-api"]
+    api 'com.timecat.component:guide-view:+'
 
     api 'com.tbuonomo.andrui:viewpagerdotsindicator:4.1.2'
-    api project(":guide")
 }
 
 apply from: "${project.rootDir}/gradle/module_tail.gradle"
