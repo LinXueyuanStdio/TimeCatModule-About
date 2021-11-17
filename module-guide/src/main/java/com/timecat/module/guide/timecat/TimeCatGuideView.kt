@@ -93,7 +93,7 @@ class TimeCatGuideView @JvmOverloads constructor(
                 }
             }
             clickTimes++
-            guideListener?.onNextEnable()
+            checkNextEnable()
         }
 
         override fun onShare(text: String) {
@@ -110,7 +110,7 @@ class TimeCatGuideView @JvmOverloads constructor(
                 context.startActivity(sharingIntent)
             }
             clickTimes++
-            guideListener?.onNextEnable()
+            checkNextEnable()
         }
 
         override fun onCopy(text: String) {
@@ -126,7 +126,7 @@ class TimeCatGuideView @JvmOverloads constructor(
                 }
             }
             clickTimes++
-            guideListener?.onNextEnable()
+            checkNextEnable()
         }
 
         override fun onTrans(text: String) {
@@ -141,7 +141,7 @@ class TimeCatGuideView @JvmOverloads constructor(
                 }
             }
             clickTimes++
-            guideListener?.onNextEnable()
+            checkNextEnable()
         }
 
         override fun onAddTask(text: String) {
@@ -156,7 +156,7 @@ class TimeCatGuideView @JvmOverloads constructor(
                 }
             }
             clickTimes++
-            guideListener?.onNextEnable()
+            checkNextEnable()
         }
 
         override fun onDrag() {
@@ -170,7 +170,7 @@ class TimeCatGuideView @JvmOverloads constructor(
             mFunctionIntroTV.setScaleX(0f)
             mFunctionIntroTV.animate().scaleY(1f).scaleX(1f).start()
             clickTimes++
-            guideListener?.onNextEnable()
+            checkNextEnable()
         }
 
         override fun onSwitchType(isLocal: Boolean) {
@@ -191,7 +191,7 @@ class TimeCatGuideView @JvmOverloads constructor(
             mFunctionIntroTV.setScaleX(0f)
             mFunctionIntroTV.animate().scaleY(1f).scaleX(1f).start()
             clickTimes++
-            guideListener?.onNextEnable()
+            checkNextEnable()
         }
 
         override fun onSwitchSymbol(isShow: Boolean) {
@@ -200,7 +200,7 @@ class TimeCatGuideView @JvmOverloads constructor(
             mFunctionIntroTV.setScaleX(0f)
             mFunctionIntroTV.animate().scaleY(1f).scaleX(1f).start()
             clickTimes++
-            guideListener?.onNextEnable()
+            checkNextEnable()
         }
 
         override fun onSwitchSection(isShow: Boolean) {
@@ -209,7 +209,7 @@ class TimeCatGuideView @JvmOverloads constructor(
             mFunctionIntroTV.setScaleX(0f)
             mFunctionIntroTV.animate().scaleY(1f).scaleX(1f).start()
             clickTimes++
-            guideListener?.onNextEnable()
+            checkNextEnable()
         }
 
         override fun onDragSelection() {
@@ -218,7 +218,7 @@ class TimeCatGuideView @JvmOverloads constructor(
             mFunctionIntroTV.setScaleX(0f)
             mFunctionIntroTV.animate().scaleY(1f).scaleX(1f).start()
             clickTimes++
-            guideListener?.onNextEnable()
+            checkNextEnable()
         }
     }
 
@@ -238,6 +238,12 @@ class TimeCatGuideView @JvmOverloads constructor(
         mIntro.setOnLongClickListener { v: View? ->
             guideView.performClick()
             true
+        }
+    }
+
+    fun checkNextEnable() {
+        if (clickTimes > 5) {
+            guideListener?.onNextEnable()
         }
     }
 
@@ -340,7 +346,7 @@ class TimeCatGuideView @JvmOverloads constructor(
                     guideView.hide {
                         guideService?.onHide(it)
                     }
-                    guideListener?.onNextEnable()
+                    checkNextEnable()
                     mFunctionIntroTV.visibility = VISIBLE
                 }
             })
