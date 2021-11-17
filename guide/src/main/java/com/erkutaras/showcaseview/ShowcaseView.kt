@@ -13,6 +13,7 @@ import android.widget.RelativeLayout
 import android.widget.TextView
 import android.widget.ImageButton
 import androidx.constraintlayout.widget.ConstraintLayout
+import com.timecat.component.guide.R
 
 /**
  * Created by erkut.aras on 23.02.2018.
@@ -22,8 +23,7 @@ open class ShowcaseView : RelativeLayout {
     private val FOCUS_AREA_TOP_MARGIN_IN_DP = 50
     private val FOCUS_AREA_BOTTOM_MARGIN_IN_DP = 20
 
-    private val descriptionView: View =
-        View.inflate(context, R.layout.layout_intro_description, null)
+    private val descriptionView: View = View.inflate(context, R.layout.layout_intro_description, null)
     private var onCustomButtonClickListener: OnClickListener? = null
     private var onCancelClickListener: OnClickListener? = null
     private var onNextClickListener: OnClickListener? = null

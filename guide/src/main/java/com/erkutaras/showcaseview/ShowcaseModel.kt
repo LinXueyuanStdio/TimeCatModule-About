@@ -1,15 +1,10 @@
 package com.erkutaras.showcaseview
 
 import android.graphics.Rect
-import android.opengl.Visibility
-import android.os.Parcel
 import android.os.Parcelable
-import android.view.View
 import androidx.annotation.DrawableRes
-import kotlinx.android.parcel.IgnoredOnParcel
-import kotlinx.android.parcel.Parceler
-import kotlinx.android.parcel.Parcelize
-import kotlinx.android.parcel.RawValue
+import kotlinx.parcelize.IgnoredOnParcel
+import kotlinx.parcelize.Parcelize
 
 /**
  * Created by erkutaras on 25.02.2018.
