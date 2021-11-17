@@ -18,7 +18,7 @@
         android:textSize="@dimen/text_size_normal" />
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/timecat_wraper"
+        android:id="@+id/parallaxView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/intro"
@@ -47,7 +47,7 @@
         android:id="@+id/enter_timecat_intro"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/timecat_wraper"
+        android:layout_below="@+id/parallaxView"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="@dimen/margin_four"
         android:gravity="center"

@@ -33,7 +33,7 @@
             app:layout_constraintTop_toBottomOf="@+id/titleTv"/>
 
     <ImageView
-            android:id="@+id/img"
+            android:id="@+id/parallaxView"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginStart="32dp"
@@ -54,8 +54,8 @@
             android:gravity="center"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
             android:textColor="@color/colorBlueMidnight"
-            app:layout_constraintEnd_toEndOf="@+id/img"
-            app:layout_constraintStart_toStartOf="@+id/img"
-            app:layout_constraintTop_toBottomOf="@+id/img"/>
+            app:layout_constraintEnd_toEndOf="@+id/parallaxView"
+            app:layout_constraintStart_toStartOf="@+id/parallaxView"
+            app:layout_constraintTop_toBottomOf="@+id/parallaxView"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

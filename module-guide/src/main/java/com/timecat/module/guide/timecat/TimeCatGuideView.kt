@@ -6,7 +6,6 @@ import android.content.Intent
 import android.net.Uri
 import android.text.TextUtils
 import android.util.AttributeSet
-import android.view.LayoutInflater
 import android.view.View
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
@@ -16,12 +15,15 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.cardview.widget.CardView
-import com.afollestad.vvalidator.util.show
 import com.timecat.component.commonsdk.utils.clipboard.ClipboardUtils
 import com.timecat.element.alert.SnackBarUtil
 import com.timecat.element.alert.ToastUtil
 import com.timecat.layout.ui.business.timecat.TimeCatLayoutWrapper
+import com.timecat.layout.ui.layout.layout_height
+import com.timecat.layout.ui.layout.layout_width
+import com.timecat.layout.ui.layout.match_parent
 import com.timecat.module.guide.R
+import com.timecat.module.guide.onboarding.BoardingLifeCycleListener
 import java.io.UnsupportedEncodingException
 import java.net.URLEncoder
 
@@ -37,9 +39,9 @@ class TimeCatGuideView @JvmOverloads constructor(
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0,
     defStyleRes: Int = 0
-) : FrameLayout(context, attrs, defStyleAttr, defStyleRes) {
+) : FrameLayout(context, attrs, defStyleAttr, defStyleRes), BoardingLifeCycleListener {
     private val mIntro: AppCompatTextView by lazy { findViewById(R.id.intro) }
-    private val mTimeCatWraper: CardView by lazy { findViewById(R.id.timecat_wraper) }
+    private val mTimeCatWraper: CardView by lazy { findViewById(R.id.parallaxView) }
     private val mTimeCatLayout: TimeCatLayoutWrapper by lazy { findViewById(R.id.timecat_wrap) }
     private val mFunctionIntroTV: AppCompatTextView by lazy { findViewById(R.id.enter_timecat_intro) }
     var guideListener: GuideListener? = null
@@ -222,7 +224,9 @@ class TimeCatGuideView @JvmOverloads constructor(
     }
 
     init {
-        val view = LayoutInflater.from(context).inflate(R.layout.guide_view_timecat, this, true)
+        inflate(context, R.layout.guide_view_timecat, this)
+        layout_width = match_parent
+        layout_height = match_parent
         initView()
     }
 
@@ -350,4 +354,22 @@ class TimeCatGuideView @JvmOverloads constructor(
         }
     }
 
+    override fun onSelected() {
+    }
+
+    override fun onDeselected() {
+    }
+
+    override fun onViewAttachedToWindow() {
+        showClickIntro()
+    }
+
+    override fun onViewDetachedFromWindow() {
+        guideView.hide {
+            guideService?.onHide(it)
+        }
+    }
+
+    override fun onBindViewHolder() {
+    }
 }

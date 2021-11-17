@@ -2,10 +2,12 @@ package com.timecat.module.guide.cover
 
 import android.content.Context
 import android.util.AttributeSet
-import android.view.LayoutInflater
 import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.TextView
+import com.timecat.layout.ui.layout.layout_height
+import com.timecat.layout.ui.layout.layout_width
+import com.timecat.layout.ui.layout.match_parent
 import com.timecat.module.guide.R
 import com.timecat.module.guide.onboarding.entity.OnBoardingPage
 
@@ -24,11 +26,13 @@ class OnBoardingPageView @JvmOverloads constructor(
 ) : FrameLayout(context, attrs, defStyleAttr, defStyleRes) {
     private val titleTv: TextView by lazy { findViewById(R.id.titleTv) }
     private val subTitleTv: TextView by lazy { findViewById(R.id.subTitleTv) }
-    private val img: ImageView by lazy { findViewById(R.id.img) }
+    private val parallaxView: ImageView by lazy { findViewById(R.id.parallaxView) }
     private val descTV: TextView by lazy { findViewById(R.id.descTV) }
 
     init {
         inflate(context, R.layout.guide_onboarding_page_item, this)
+        layout_width = match_parent
+        layout_height = match_parent
     }
 
     fun bind(onBoardingPage: OnBoardingPage) {
@@ -36,6 +40,6 @@ class OnBoardingPageView @JvmOverloads constructor(
         titleTv.text = res.getString(onBoardingPage.titleResource)
         subTitleTv.text = res.getString(onBoardingPage.subTitleResource)
         descTV.text = res.getString(onBoardingPage.descriptionResource)
-        img.setImageResource(onBoardingPage.logoResource)
+        parallaxView.setImageResource(onBoardingPage.logoResource)
     }
 }

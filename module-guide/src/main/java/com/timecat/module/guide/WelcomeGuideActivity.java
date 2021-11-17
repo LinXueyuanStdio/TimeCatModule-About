@@ -258,7 +258,7 @@ public class WelcomeGuideActivity extends BaseSimpleRxActivity {
         mJumpBtn = findViewById(R.id.jump);
         mFunctionIntroTV = findViewById(R.id.enter_timecat_intro);
         mTimeCatLayout = findViewById(R.id.timecat_wrap);
-        mTimeCatWraper = findViewById(R.id.timecat_wraper);
+        mTimeCatWraper = findViewById(R.id.parallaxView);
         mEnterBtn = findViewById(R.id.enter_timecat);
 
         initView();

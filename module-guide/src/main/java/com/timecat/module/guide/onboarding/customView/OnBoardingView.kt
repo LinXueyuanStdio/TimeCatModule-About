@@ -67,10 +67,6 @@ class OnBoardingView @JvmOverloads constructor(
 
 
     private fun addSlideChangeListener() {
-slider.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
-    override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
-        slider.currentItem
-    }})
         slider.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
             override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
                 super.onPageScrolled(position, positionOffset, positionOffsetPixels)
