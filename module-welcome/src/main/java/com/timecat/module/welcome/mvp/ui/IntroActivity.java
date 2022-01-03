@@ -85,8 +85,8 @@ public class IntroActivity extends BaseThemeActivity {
     protected void onCreate(Bundle savedInstanceState) {
         IntroLoader.initNativeLibs(this);
         Space.checkDisplaySize(this, getResources().getConfiguration());
-        super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
+        super.onCreate(savedInstanceState);
 
         titles = new String[]{
                 getString(R.string.welcome_Page1Title),
