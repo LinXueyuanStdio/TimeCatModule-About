@@ -1,3 +1,6 @@
 apply from: "${project.rootDir}/gradle/library_header.gradle"
 
 apply from: "${project.rootDir}/gradle/library_tail.gradle"
+android {
+    namespace 'com.timecat.component.guide.api'
+}

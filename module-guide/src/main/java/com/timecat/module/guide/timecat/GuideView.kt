@@ -261,6 +261,7 @@ class GuideView(private var mContent: Context?) : RelativeLayout(mContent), OnGl
                         guideViewParams.setMargins(right + offsetX, offsetY - height + top, -right - offsetX, height - top - offsetY)
                     }
                     Direction.RIGHT_BOTTOM -> guideViewParams.setMargins(right + offsetX, bottom + offsetY, -right - offsetX, -top - offsetY)
+                    null -> {}
                 }
             } else {
                 guideViewParams = LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT)
@@ -373,6 +374,7 @@ class GuideView(private var mContent: Context?) : RelativeLayout(mContent), OnGl
                     oval.bottom = (center[1] + target[1] / 2).toFloat() //下边
                     temp!!.drawRoundRect(oval, radius.toFloat(), radius.toFloat(), mCirclePaint!!) //绘制圆角矩形
                 }
+                null -> {}
             }
         } else {
             temp!!.drawCircle(center[0].toFloat(), center[1].toFloat(), radius.toFloat(), mCirclePaint!!) //绘制圆形

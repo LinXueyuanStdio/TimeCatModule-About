@@ -10,8 +10,8 @@ android {
 
     kotlinOptions {
         jvmTarget = "11"
-        useIR = true
     }
+    namespace 'com.timecat.component.guide'
 }
 
 dependencies {
